@@ -79,7 +79,7 @@ let citation = document.querySelector('.citation');
 let year = document.querySelector('.year');
 let tags = document.querySelector('.tags');
 let randomRGB = [];
-
+let phrase;
 /*
 
 rgbProducer is a function that will produce the numbers for the array to be used in the 
@@ -111,7 +111,7 @@ const randomNGcolors = function() {
 function getRandomNum(){
   let ranNum = Math.floor(Math.random()*quotes.length);
    
-   if (ranNum === ranIndex){
+   if (ranNum == ranIndex){
     return getRandomNum();
    } else{
     ranIndex = ranNum;
@@ -122,9 +122,20 @@ function getRandomNum(){
  * `getRandomQuote` function
 ***/
 function getRandomQuote(){
-    getRandomNum();
-    document.body.style.backgroundColor = `rgb(${randomRGB})`;
-    quote.textContent = `${quotes[ranIndex].quote}`;
+   getRandomNum();
+   phrase = quotes[ranIndex].quote;
+   return phrase;
+}
+
+
+/***
+ * `printQuote` function
+***/
+function printQuote(){
+  rgbProducer();
+  getRandomQuote();
+  document.body.style.backgroundColor = `rgb(${randomRGB})`;
+    quote.textContent = `${phrase}`;
     author.innerHTML = `${quotes[ranIndex].source}`;
 
     if(quotes[ranIndex].citation && !quotes[ranIndex].citation == '' && Object.keys(quotes[ranIndex]).includes('citation')){
@@ -141,21 +152,9 @@ function getRandomQuote(){
       tags.innerHTML = '';
     } else{
       tags.innerHTML = `${quotes[ranIndex].tags}`;
-    }
-
-    console.log(`${quotes[ranIndex].quote}`);
-}
-
-
-/***
- * `printQuote` function
-***/
-function printQuote(){
-  rgbProducer();
-  getRandomQuote();
- 
 
   }
+}
 /**
  * sets the interval for automatic use of the print quote function
  */
