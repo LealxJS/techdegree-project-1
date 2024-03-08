@@ -85,7 +85,7 @@ const quotes = [
 ];
 
 const time = 2500;
-
+let currentIndex;
 
 /**
  *  This function returns a number between 0 and the maxNumber
@@ -117,7 +117,8 @@ function rgbProducer() {
  * `getRandomQuote` function
 ***/
 function getRandomQuote() {
-  let currentIndex;
+  
+
   const randomIndex = getRandomNum(quotes.length);
 
   if (randomIndex == currentIndex) {
